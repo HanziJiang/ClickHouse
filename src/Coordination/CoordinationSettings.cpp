@@ -67,6 +67,9 @@ namespace ErrorCodes
     DECLARE(Bool, async_replication, true, "Enable async replication. All write and read guarantees are preserved while better performance is achieved.", 0) \
     DECLARE(Bool, experimental_use_rocksdb, false, "Use rocksdb as backend storage", 0) \
     DECLARE(UInt64, rocksdb_load_batch_size, 1000, "Size of write batch used during snapshot loading", 0) \
+    DECLARE(UInt64, committed_memtable_size, 64 * 1024 * 1024, "Experimental LSM storage: rotate the mutable memtable of the committed state when it exceeds this many bytes. Applies on memtable rotation.", HOT_RELOAD) \
+    DECLARE(UInt64, uncommitted_memtable_size, 16 * 1024 * 1024, "Experimental LSM storage: rotate the latest uncommitted memtable when it exceeds this many bytes. Applies on memtable rotation.", HOT_RELOAD) \
+    DECLARE(UInt64, memtable_block_size, 32 * 1024, "Experimental LSM storage: target size of memtable blocks, in bytes. Applies to newly created memtables.", HOT_RELOAD) \
     DECLARE(UInt64, latest_logs_cache_size_threshold, 1_GiB, "Maximum total size of in-memory cache of latest log entries.", 0) \
     DECLARE(UInt64, latest_logs_cache_entry_count_threshold, 200'000, "Maximum number of entries in in-memory cache of latest log entries.", 0) \
     DECLARE(UInt64, commit_logs_cache_size_threshold, 500_MiB, "Maximum total size of in-memory cache of log entries needed next for commit.", 0) \
